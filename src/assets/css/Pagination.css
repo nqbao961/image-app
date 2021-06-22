@@ -1,0 +1,24 @@
+.pagination {
+  display: flex;
+  width: 100%;
+}
+.page-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 30px;
+  height: 30px;
+  background-color: rgb(180, 180, 180);
+  cursor: pointer;
+}
+.page-button:hover {
+  background-color: gray;
+}
+.page-list {
+  width: 60%;
+  display: flex;
+  overflow: auto;
+}
+.active {
+  background-color: gray;
+}
