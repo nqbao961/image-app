@@ -1,5 +1,5 @@
 import React from "react";
-import "../assets/css/Pagination.css";
+import styles from "../assets/css/Pagination.module.scss";
 
 type PaginationType = {
   totalPages: number;
@@ -18,7 +18,9 @@ export function Pagination({
   for (let index = 1; index <= totalPages; index++) {
     pageItems.push(
       <p
-        className={`page-button ${currentPage === index ? "active" : ""}`}
+        className={`${styles.pageButton} ${
+          currentPage === index ? styles.active : ""
+        }`}
         key={index}
         onClick={() => handleSearch(input, index)}
       >
@@ -27,12 +29,12 @@ export function Pagination({
     );
   }
   return (
-    <div className="pagination">
+    <div className={styles.pagination}>
       {totalPages !== 0 && (
         <>
-          <p className="page-button">{"<"}</p>
-          <div className="page-list">{pageItems}</div>
-          <p className="page-button">{">"}</p>
+          <p className={styles.pageButton}>{"<"}</p>
+          <div className={styles.pageList}>{pageItems}</div>
+          <p className={styles.pageButton}>{">"}</p>
         </>
       )}
     </div>

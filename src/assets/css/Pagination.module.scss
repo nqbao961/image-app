@@ -1,24 +1,24 @@
 .pagination {
   display: flex;
-  width: 100%;
+  width: 60%;
+  margin: 20px 0;
 }
-.page-button {
+.pageButton {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
   min-width: 30px;
   height: 30px;
   background-color: rgb(180, 180, 180);
   cursor: pointer;
+  &:hover,
+  &.active {
+    background-color: gray;
+  }
 }
-.page-button:hover {
-  background-color: gray;
-}
-.page-list {
-  width: 60%;
+.pageList {
+  width: 100%;
   display: flex;
   overflow: auto;
-}
-.active {
-  background-color: gray;
 }

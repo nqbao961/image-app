@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ImageItemType } from "../types/index";
 import { Link } from "react-router-dom";
-import "../assets/css/ImageItem.css";
+import styles from "../assets/css/ImageItem.module.scss";
 
 type ImageItemProps = {
   observer: any;
@@ -32,8 +32,8 @@ export function ImageItem({ observer, imageItem }: ImageItemProps) {
   }, [observer]);
 
   return (
-    <Link ref={imageEl} to={`/${imageItem.id}`} className="image-item">
-      {!loaded && <div className="shimmer"></div>}
+    <Link ref={imageEl} to={`/${imageItem.id}`} className={styles.imageItem}>
+      {!loaded && <div className={styles.shimmer}></div>}
       <img
         style={{ display: loaded ? "block" : "none" }}
         onLoad={onLoad}

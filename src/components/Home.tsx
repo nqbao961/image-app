@@ -3,15 +3,20 @@ import { Pagination } from "../components/Pagination";
 import { ImageList } from "../components/ImageList";
 import { useEffect, useState } from "react";
 import { getImagesFromQuery } from "../api/unsplash";
+import styles from "../assets/css/Home.module.scss";
 
 function Home() {
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [input, setInput] = useState("");
   const [imageList, setImageList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = async (input: string, page: number) => {
+    setIsLoading(true);
+    setImageList([]);
     const res = await getImagesFromQuery(input, page);
+    setIsLoading(false);
     if (res) {
       setTotalPages(res.data.total_pages);
       setCurrentPage(page);
@@ -27,7 +32,7 @@ function Home() {
   }, [currentPage]);
 
   return (
-    <div className="Home">
+    <div className={styles.container}>
       <SearchBox handleSearch={handleSearch} />
       <Pagination
         totalPages={totalPages}
@@ -35,6 +40,7 @@ function Home() {
         input={input}
         handleSearch={handleSearch}
       />
+      {isLoading && <div className={styles.loader}></div>}
       <ImageList imageList={imageList} />
     </div>
   );

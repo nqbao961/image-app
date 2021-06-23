@@ -1,9 +1,16 @@
-.image-item {
-  width: calc(20% - 5px);
-}
-.image-item img {
-  width: 100%;
-  object-fit: contain;
+.imageItem {
+  width: calc(100% / 3 - 5px);
+  display: flex;
+  background-color: #e2f1f8;
+  border-radius: 5px;
+  overflow: hidden;
+  &:hover {
+    opacity: 0.8;
+  }
+  img {
+    width: 100%;
+    object-fit: contain;
+  }
 }
 .shimmer {
   height: 300px;

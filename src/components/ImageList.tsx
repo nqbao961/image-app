@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ImageItemType } from "../types/index";
 import { ImageItem } from "./ImageItem";
-import "../assets/css/ImageList.css";
+import styles from "../assets/css/ImageList.module.scss";
 
 type ImageListProps = {
   imageList: Array<ImageItemType>;
@@ -54,5 +54,5 @@ export function ImageList({ imageList }: ImageListProps) {
     <ImageItem key={index} observer={imageObserver} imageItem={image} />
   ));
 
-  return <div className="image-list-container">{imageElements}</div>;
+  return <div className={styles.container}>{imageElements}</div>;
 }
