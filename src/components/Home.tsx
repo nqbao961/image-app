@@ -3,7 +3,7 @@ import { Pagination } from "../components/Pagination";
 import { ImageList } from "../components/ImageList";
 import { useEffect, useState } from "react";
 import { getImagesFromQuery } from "../api/unsplash";
-import styles from "../assets/css/Home.module.scss";
+import styles from "../styles/Home.module.scss";
 
 function Home() {
   const [totalPages, setTotalPages] = useState(0);

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ImageItemType } from "../types/index";
-import { Link } from "react-router-dom";
-import styles from "../assets/css/ImageItem.module.scss";
+import Link from "next/link";
+import styles from "../styles/ImageItem.module.scss";
 
 type ImageItemProps = {
   observer: any;
@@ -32,14 +32,16 @@ export function ImageItem({ observer, imageItem }: ImageItemProps) {
   }, [observer]);
 
   return (
-    <Link ref={imageEl} to={`/${imageItem.id}`} className={styles.imageItem}>
-      {!loaded && <div className={styles.shimmer}></div>}
-      <img
-        style={{ display: loaded ? "block" : "none" }}
-        onLoad={onLoad}
-        data-src={imageItem.urls.thumb}
-        alt={imageItem.alt_description}
-      />
+    <Link href={`/image/${imageItem.id}`}>
+      <a ref={imageEl} className={styles.imageItem}>
+        {!loaded && <div className={styles.shimmer}></div>}
+        <img
+          style={{ display: loaded ? "block" : "none" }}
+          onLoad={onLoad}
+          data-src={imageItem.urls.thumb}
+          alt={imageItem.alt_description}
+        />
+      </a>
     </Link>
   );
 }

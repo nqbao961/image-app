@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ImageItemType } from "../types/index";
 import { ImageItem } from "./ImageItem";
-import styles from "../assets/css/ImageList.module.scss";
+import styles from "../styles/ImageList.module.scss";
 
 type ImageListProps = {
   imageList: Array<ImageItemType>;

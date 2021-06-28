@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../assets/css/SearchBox.module.scss";
+import styles from "../styles/SearchBox.module.scss";
 
 type SearchProps = {
   handleSearch: (input: string, page: number) => void;
