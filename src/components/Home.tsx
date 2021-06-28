@@ -2,46 +2,42 @@ import { SearchBox } from "../components/SearchBox";
 import { Pagination } from "../components/Pagination";
 import { ImageList } from "../components/ImageList";
 import { useEffect, useState } from "react";
-import { getImagesFromQuery } from "../api/unsplash";
+import { useAppSelector, useAppDispatch } from "../hooks";
+import { getImages } from "../@redux/actions/image";
 import styles from "../styles/Home.module.scss";
 
 function Home() {
-  const [totalPages, setTotalPages] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [input, setInput] = useState("");
-  const [imageList, setImageList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSearch = async (input: string, page: number) => {
-    setIsLoading(true);
-    setImageList([]);
-    const res = await getImagesFromQuery(input, page);
-    setIsLoading(false);
-    if (res) {
-      setTotalPages(res.data.total_pages);
-      setCurrentPage(page);
-      setInput(input);
-      setImageList(res.data.results);
-    }
+  const handleSearch = (input: string, page: number) => {
+    setCurrentPage(page);
+    setInput(input);
   };
 
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    return function cleanup() {
-      setImageList([]);
-    };
-  }, [currentPage]);
+    if (input) {
+      dispatch(getImages(input, currentPage));
+    }
+  }, [input, currentPage]);
+
+  const data = useAppSelector((state) => state.images.data);
 
   return (
     <div className={styles.container}>
       <SearchBox handleSearch={handleSearch} />
-      <Pagination
-        totalPages={totalPages}
-        currentPage={currentPage}
-        input={input}
-        handleSearch={handleSearch}
-      />
-      {isLoading && <div className={styles.loader}></div>}
-      <ImageList imageList={imageList} />
+      {data && data.results.length > 0 && (
+        <>
+          <Pagination
+            totalPages={data.total_pages}
+            currentPage={currentPage}
+            input={input}
+            handleSearch={handleSearch}
+          />
+          <ImageList imageList={data.results} />
+        </>
+      )}
     </div>
   );
 }

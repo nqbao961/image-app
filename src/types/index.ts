@@ -1,5 +1,5 @@
 export type getDataType = {
-  results: Array<Object>;
+  results: Array<ImageItemType>;
   total: number;
   total_pages: number;
 };

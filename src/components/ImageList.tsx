@@ -51,7 +51,11 @@ export function ImageList({ imageList }: ImageListProps) {
   }, []);
 
   let imageElements = imageList.map((image, index) => (
-    <ImageItem key={index} observer={imageObserver} imageItem={image} />
+    <ImageItem
+      key={index + image.id}
+      observer={imageObserver}
+      imageItem={image}
+    />
   ));
 
   return <div className={styles.container}>{imageElements}</div>;

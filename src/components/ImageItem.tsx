@@ -27,7 +27,9 @@ export function ImageItem({ observer, imageItem }: ImageItemProps) {
     }
 
     return () => {
-      observer.unobserve(current);
+      if (observer !== null) {
+        observer.unobserve(current);
+      }
     };
   }, [observer]);
 
