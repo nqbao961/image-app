@@ -2,14 +2,15 @@ import App from "next/app";
 import type { AppProps, AppContext } from "next/app";
 import { Provider } from "react-redux";
 import { store } from "../@redux/store";
-import Loading from "../components/common/Loading";
+import { LoadingProvider } from "../components/providers/LoadingProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Provider store={store}>
-      <Component {...pageProps} />
-      <Loading />
-    </Provider>
+    <LoadingProvider>
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+    </LoadingProvider>
   );
 }
 

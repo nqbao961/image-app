@@ -5,10 +5,12 @@ import { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { getImages } from "../@redux/actions/image";
 import styles from "../styles/Home.module.scss";
+import { useLoading } from "../hooks/loading";
 
 function Home() {
   const [currentPage, setCurrentPage] = useState(0);
   const [input, setInput] = useState("");
+  const { show, hide } = useLoading();
 
   const handleSearch = (input: string, page: number) => {
     setCurrentPage(page);
@@ -23,6 +25,13 @@ function Home() {
   }, [input, currentPage]);
 
   const data = useAppSelector((state) => state.images.data);
+  const requesting = useAppSelector((state) => state.images.requesting);
+
+  if (requesting) {
+    show();
+  } else {
+    hide();
+  }
 
   return (
     <div className={styles.container}>
